@@ -6,15 +6,17 @@ from DataType import DataType
 from fastapi import FastAPI
 
 app = FastAPI()
-pickle_in = open("model-0.1.0.pkl","rb")
+pickle_in = open("model-0.1.0.pkl", "rb")
 model = pickle.load(pickle_in)
+
 
 @app.get('/')
 async def index():
     return {'message': 'Hello Ji'}
 
+
 @app.post('/predict')
-async def predict_approval(data : DataType):
+async def predict_approval(data: DataType):
     data = data.model_dump()
 
     no_of_dependents = data['no_of_dependents']
@@ -43,5 +45,6 @@ async def predict_approval(data : DataType):
                                )
     return prediction[0]
 
+
 if __name__ == "__main__":
-    uvicorn.run(app, host = '127.0.0.1', port = 8000)
+    uvicorn.run(app, host='127.0.0.1', port=8000)

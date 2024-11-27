@@ -11,7 +11,7 @@ model = pickle.load(pickle_in)
 
 @app.get('/')
 async def index():
-    return {'message','Hello Ji'}
+    return {'message': 'Hello Ji'}
 
 @app.post('/predict')
 async def predict_approval(data : DataType):

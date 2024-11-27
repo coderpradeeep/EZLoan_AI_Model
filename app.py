@@ -10,12 +10,12 @@ pickle_in = open("model-0.1.0.pkl", "rb")
 model = pickle.load(pickle_in)
 
 
-@app.get('/')
+@app.get("/")
 async def index():
     return {'message': 'Hello Ji'}
 
 
-@app.post('/predict')
+@app.post("/predict")
 async def predict_approval(data: DataType):
     data = data.model_dump()
 

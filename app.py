@@ -9,11 +9,12 @@ model = pickle.load(pickle_in)
 
 
 @app.get('/')
-def index():
+async def index():
     return {'message': 'Hello Ji'}
 
+
 @app.post('/predict')
-def predict_approval(data: DataType):
+async def predict_approval(data: DataType):
     data = data.dict()
 
     no_of_dependents = data['no_of_dependents']

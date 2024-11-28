@@ -1,6 +1,7 @@
 import uvicorn
 import pandas
 import numpy
+from fastapi import HTTPException
 import pickle
 from DataType import DataType
 from fastapi import FastAPI
@@ -10,14 +11,15 @@ pickle_in = open("model-0.1.0.pkl", "rb")
 model = pickle.load(pickle_in)
 
 
-@app.get("/")
-async def index():
+@app.get('/')
+def index():
+    raise HTTPException(status_code=404, detail="Unable to connect")
     return {'message': 'Hello Ji'}
 
 
-@app.post("/predict")
-async def predict_approval(data: DataType):
-    data = data.model_dump()
+@app.post('/predict')
+def predict_approval(data: DataType):
+    data = data.dict()
 
     no_of_dependents = data['no_of_dependents']
     education = data['education']
@@ -41,8 +43,7 @@ async def predict_approval(data: DataType):
                                  residential_assets_value,
                                  commercial_assets_value,
                                  luxury_assets_value,
-                                 bank_asset_value]]
-                               )
+                                 bank_asset_value]])
     return prediction[0]
 
 

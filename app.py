@@ -8,7 +8,9 @@ pickle_in = open("model-0.1.0.pkl", "rb")
 model = pickle.load(pickle_in)
 
 
-
+@app.get('/')
+def index():
+    return {'message': 'Hello Ji'}
 
 @app.post('/predict')
 def predict_approval(data: DataType):
@@ -40,5 +42,5 @@ def predict_approval(data: DataType):
     return prediction[0]
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host='0.0.0.0', port=8000)

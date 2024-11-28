@@ -1,7 +1,4 @@
 import uvicorn
-import pandas
-import numpy
-from fastapi import HTTPException
 import pickle
 from DataType import DataType
 from fastapi import FastAPI
@@ -13,9 +10,7 @@ model = pickle.load(pickle_in)
 
 @app.get('/')
 def index():
-    raise HTTPException(status_code=404, detail="Unable to connect")
     return {'message': 'Hello Ji'}
-
 
 @app.post('/predict')
 def predict_approval(data: DataType):
@@ -48,4 +43,4 @@ def predict_approval(data: DataType):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=8000)

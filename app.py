@@ -13,7 +13,7 @@ def index():
     return {'message': 'Hello Ji'}
 
 
-@app.post('/predict')
+@app.get('/predict')
 def predict_approval(data: DataType):
     data = data.dict()
 

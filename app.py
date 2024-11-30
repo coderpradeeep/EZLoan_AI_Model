@@ -14,7 +14,7 @@ def index():
 
 
 @app.post('/predict')
-def predict_approval(data: DataType):
+def predict_approval(data: DataType) -> float:
     data = data.dict()
 
     no_of_dependents = data['no_of_dependents']
@@ -40,7 +40,7 @@ def predict_approval(data: DataType):
                                  commercial_assets_value,
                                  luxury_assets_value,
                                  bank_asset_value]])
-    return str(prediction[0])
+    return float(prediction[0])
 
 
 # if __name__ == "__main__":

@@ -29,7 +29,7 @@ def predict_approval(data: DataType) -> float:
     luxury_assets_value = data['luxury_assets_value']
     bank_asset_value = data['bank_asset_value']
 
-    prediction = model.predict([[no_of_dependents,
+    prediction: float = model.predict([[no_of_dependents,
                                  education,
                                  self_employed,
                                  income_annum,
